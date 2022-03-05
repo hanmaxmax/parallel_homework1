@@ -66,14 +66,14 @@ int main()
         while(true)
         {
             gettimeofday(&noww, NULL);
-            if((noww.tv_sec - head.tv_sec) + (double)(noww.tv_usec - head.tv_usec) / 1000.0 > 10)
+            if(((noww.tv_sec - head.tv_sec)*1000000 + (noww.tv_usec - head.tv_usec)) / 1000.0 > 10)
                 break;
             //f_ordinary(n);//执行函数
-            f_pro(n);
+            f_ordinary(n);
             counter++;
         }
         gettimeofday(&tail, NULL);//结束计时
-        seconds = (tail.tv_sec - head.tv_sec) + (double)(tail.tv_usec - head.tv_usec) / 1000.0;//单位 s
+        seconds = ((tail.tv_sec - head.tv_sec)*1000000 + (tail.tv_usec - head.tv_usec)) / 1000.0;//单位 ms
 
         //输出结果
         cout << n <<' '<< counter <<' '<< seconds<<' '<< seconds / counter << endl ;// 单位 ms
