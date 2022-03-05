@@ -7,16 +7,16 @@ const int N=10000;
 
 double b[N][N],a[N],sum[N];
 
-//åˆå§‹åŒ–
+//³õÊ¼»¯
 void init(int n)
 {
     for(int i=0; i<N; i++)
     {
         for(int j=0; j<N; j++)
         {
-            b[i][j] = i+j;//åˆå§‹åŒ–çŸ©é˜µ
+            b[i][j] = i+j;//³õÊ¼»¯¾ØÕó
         }
-        a[i] = i;//åˆå§‹åŒ–å‘é‡
+        a[i] = i;//³õÊ¼»¯ÏòÁ¿
     }
 }
 
@@ -33,13 +33,28 @@ void f_ordinary(int n)
     }
 }
 
+void f_pro(int n)
+{
+    for (int i=0; i<n; i++)
+    {
+        sum[i]=0.0;
+    }
+    for (int j=0;j<n;j++)
+    {
+        for(int i=0;i<n;i++)
+        {
+            sum[i]+=b[j][i]*a[j];
+        }
+    }
 
+
+}
 
 
 int main()
 {
     int n,step=100;
-    long long counter;// è®°å½•æ¬¡æ•°
+    long long counter;// ¼ÇÂ¼´ÎÊı
     double seconds ;
     long long head,tail,freq,noww;
     init(N);
@@ -47,7 +62,7 @@ int main()
     for(int n=0;n<=10000;n+=step)
     {
         QueryPerformanceFrequency((LARGE_INTEGER *)&freq);
-        QueryPerformanceCounter((LARGE_INTEGER *)&head);//å¼€å§‹è®¡æ—¶
+        QueryPerformanceCounter((LARGE_INTEGER *)&head);//¿ªÊ¼¼ÆÊ±
 
         counter=0;
         while(true)
@@ -55,13 +70,14 @@ int main()
             QueryPerformanceCounter((LARGE_INTEGER *)&noww);
             if( (noww-head)*1000.0/freq > 10)
                 break;
-            f_ordinary(n);//æ‰§è¡Œå‡½æ•°
+            // f_ordinary(n);//Ö´ĞĞº¯Êı
+            f_pro(n);
             counter++;
         }
-        QueryPerformanceCounter((LARGE_INTEGER *)&tail );//ç»“æŸè®¡æ—¶
-        seconds = (tail - head) * 1000.0 / freq ;//å•ä½ ms
+        QueryPerformanceCounter((LARGE_INTEGER *)&tail );//½áÊø¼ÆÊ±
+        seconds = (tail - head) * 1000.0 / freq ;//µ¥Î» ms
 
-        //è¾“å‡ºç»“æœ
+        //Êä³ö½á¹û
         cout << n <<' '<< counter <<' '<< seconds<<' '<< seconds / counter << endl ;
        if(n==1000)
           step=1000;
