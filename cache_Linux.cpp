@@ -73,10 +73,10 @@ int main()
             counter++;
         }
         gettimeofday(&tail, NULL);//结束计时
-        seconds = (tail.tv_sec - head.tv_sec) + (double)(tail.tv_usec - head.tv_usec) / 1000000.0;//单位 s
+        seconds = (tail.tv_sec - head.tv_sec) + (double)(tail.tv_usec - head.tv_usec) / 1000.0;//单位 s
 
         //输出结果
-        cout << n <<' '<< counter <<' '<< seconds<<' '<< seconds / counter << endl ;
+        cout << n <<' '<< counter <<' '<< seconds<<' '<< seconds / counter << endl ;// 单位 ms
        if(n==1000)
           step=1000;
     }
