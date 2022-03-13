@@ -25,6 +25,15 @@ void g_ordinary(int n)
     }
 }
 
+void g_my(int n)
+{
+    for(int i=0;i<n;i+=2)
+    {
+        mysum+=c[i];
+        mysum+=c[i+1];
+    }
+}
+
 void g_pro1(int n)
 {
     // ¶àÂ·Á´Ê½
@@ -99,4 +108,3 @@ int main()
 
     return 0;
 }
-
